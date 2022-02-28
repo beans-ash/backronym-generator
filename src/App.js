@@ -1,25 +1,69 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+
+const input = 'star';
+const arrayOfLetters = [...input];
+
+const request = arrayOfLetters.map((letter, index) => {
+  return axios({
+    method:'GET',
+    url: 'https://api.datamuse.com/sug?',
+    responseType: 'json',
+    params: {
+      s: letter,
+      max: 50,
+    }
+  })
+  .then((res) => {
+    return res.data;
+  });
+})
+const randomizer = (array) => {
+  const index = Math.floor(Math.random() * array.length);
+  return (array[index]);
+}
+
+Promise.all(request)
+  .then( (jsonData) => {
+    const backronymArray = [];
+    jsonData.forEach((wordArray) => {
+      const randomWord = randomizer(wordArray);
+      backronymArray.push(randomWord.word);
+    })
+    console.log(backronymArray);
+  }
+);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" />
     </div>
   );
 }
 
 export default App;
+
+// Component to capture user's input
+  // Input can only contain letters from A-Z, transform input to lowercase
+  // Display error to user for entering number/symbol/spaces ///// maybe prevent user from putting in anything but letters
+  // maybe limit word length?
+  // use spread operator to capture each letter of user's word
+  // save letters in an array
+  // set array into state
+
+// Component for API call to data muse
+  // use forEach() on saved array from user input
+  //on submit, API call for first letter (ie index 0 of array) 
+  //returned word is save in a new array for backronym, and also saved in a variable
+  // subsequent API call with remaining letters, each returned word is saved in backronym array and as a variable for subsequent API call
+  // once letter array length === backronym array length, set backronym  array into state
+
+// Component to display backronym 
+  // props from results in API component will be displayed
+  // save button to add backronym to Firebase 
+
+// Component for Firebase
+  // Display user's input and associated saved backronyms
+  // Option to delete a backronym from list
+  // Conditional rendering -> if there are no saved backronym, display message
