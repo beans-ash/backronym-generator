@@ -1,43 +1,12 @@
 import './App.css';
-import axios from 'axios';
+import UserInput from './Components/UserInput';
 
-const input = 'star';
-const arrayOfLetters = [...input];
 
-const request = arrayOfLetters.map((letter, index) => {
-  return axios({
-    method:'GET',
-    url: 'https://api.datamuse.com/sug?',
-    responseType: 'json',
-    params: {
-      s: letter,
-      max: 50,
-    }
-  })
-  .then((res) => {
-    return res.data;
-  });
-})
-const randomizer = (array) => {
-  const index = Math.floor(Math.random() * array.length);
-  return (array[index]);
-}
-
-Promise.all(request)
-  .then( (jsonData) => {
-    const backronymArray = [];
-    jsonData.forEach((wordArray) => {
-      const randomWord = randomizer(wordArray);
-      backronymArray.push(randomWord.word);
-    })
-    console.log(backronymArray);
-  }
-);
 
 function App() {
   return (
     <div className="App">
-      <input type="text" />
+      <UserInput />
     </div>
   );
 }
