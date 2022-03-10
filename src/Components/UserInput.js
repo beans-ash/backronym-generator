@@ -17,44 +17,82 @@ const UserInput = ()=> {
         event.preventDefault();
         setSearchTerm(userInput);
         // setUserInput('');
+        search(userInput)
+    }
 
+    const search = (searchTerm) => {
+        if(searchTerm !== '') {
+        const arrayOfLetters = [...searchTerm];
+        if (arrayOfLetters.length >= 3) {
+            const request = arrayOfLetters.map(letter => {
+                return axios({
+                    method: 'GET',
+                    url: 'https://api.datamuse.com/sug?',
+                    responseType: 'json',
+                    params: {
+                        s: letter,
+                        max: 50,
+                    }
+                })
+                    .then((res) => {
+                        const returnedFilteredArray = res.data.filter(wordObj => wordObj.word.length > 1)
+                        return returnedFilteredArray;
+                    });
+            })
+            const randomizer = (array) => {
+                const index = Math.floor(Math.random() * array.length);
+                return (array[index]);
+            }
+
+            Promise.all(request)
+                .then((jsonData) => {
+                    const backronymArray = [];
+                    jsonData.forEach((wordArray) => {
+                        const randomWord = randomizer(wordArray);
+                        backronymArray.push(randomWord.word);
+                    })
+                    setReturnedBackronym(backronymArray);
+                }
+                );
+        }
+        }
     }
     
-    useEffect(() => {
-        const arrayOfLetters = [...searchTerm];
-        if(arrayOfLetters.length >= 3) {
-        const request = arrayOfLetters.map(letter => {
-            return axios({
-                method: 'GET',
-                url: 'https://api.datamuse.com/sug?',
-                responseType: 'json',
-                params: {
-                    s: letter,
-                    max: 50,
-                }
-            })
-                .then((res) => {
-                    const returnedFilteredArray = res.data.filter(wordObj => wordObj.word.length > 1)
-                    return returnedFilteredArray;
-                });
-        })
-        const randomizer = (array) => {
-            const index = Math.floor(Math.random() * array.length);
-            return (array[index]);
-        }
+    // useEffect(() => {
+    //     const arrayOfLetters = [...searchTerm];
+    //     if(arrayOfLetters.length >= 3) {
+    //     const request = arrayOfLetters.map(letter => {
+    //         return axios({
+    //             method: 'GET',
+    //             url: 'https://api.datamuse.com/sug?',
+    //             responseType: 'json',
+    //             params: {
+    //                 s: letter,
+    //                 max: 50,
+    //             }
+    //         })
+    //             .then((res) => {
+    //                 const returnedFilteredArray = res.data.filter(wordObj => wordObj.word.length > 1)
+    //                 return returnedFilteredArray;
+    //             });
+    //     })
+    //     const randomizer = (array) => {
+    //         const index = Math.floor(Math.random() * array.length);
+    //         return (array[index]);
+    //     }
     
-        Promise.all(request)
-            .then((jsonData) => {
-                const backronymArray = [];
-                jsonData.forEach((wordArray) => {
-                    const randomWord = randomizer(wordArray);
-                    backronymArray.push(randomWord.word);
-                })
-                setReturnedBackronym(backronymArray);
-            }
-            );
-        }
-    }, [searchTerm])
+    //     Promise.all(request)
+    //         .then((jsonData) => {
+    //             const backronymArray = [];
+    //             jsonData.forEach((wordArray) => {
+    //                 const randomWord = randomizer(wordArray);
+    //                 backronymArray.push(randomWord.word);
+    //             })
+    //             setReturnedBackronym(backronymArray);
+    //         }
+    //         );
+    //     }
+    // }, [searchTerm])
     console.log(returnedBackronym)
 
     return(
