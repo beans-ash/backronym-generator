@@ -1,4 +1,5 @@
 import './App.css';
+import SavedBackronym from './Components/SavedBackronyms';
 import UserInput from './Components/UserInput';
 
 
@@ -7,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <UserInput />
+      <SavedBackronym />
     </div>
   );
 }
