@@ -21,29 +21,33 @@ const UserInput = ()=> {
         search(userInput);
     }
 
-    const search = (enteredSearchTerm) => {
+    const search = (enteredSearchTerm, returnedWord = searchTerm) => {
         if(enteredSearchTerm !== '') {
             const arrayOfLetters = [...enteredSearchTerm];
             if (arrayOfLetters.length >= 3) {
                 const request = arrayOfLetters.map(letter => {
                     return axios({
                         method: 'GET',
-                        url: 'https://api.datamuse.com/sug?',
+                        url: 'https://api.datamuse.com/words?',
                         responseType: 'json',
                         params: {
-                            s: letter,
-                            max: 50,
+                            ml: returnedWord,
+                            sp: `${letter}*`
                         }
                     })
                         .then((res) => {
-                            const returnedFilteredArray = res.data.filter(wordObj => wordObj.word.length > 1)
+                            console.log(res)
+                            const returnedFilteredArray = res.data.filter(wordObj => wordObj.word.length > 1 && !wordObj.word.includes(' '))
                             return returnedFilteredArray;
                         });
                 })
                 const randomizer = (array) => {
                     const index = Math.floor(Math.random() * array.length);
+                    returnedWord = array[index].word;
+                    console.log(returnedWord)
                     return (array[index]);
                 }
+
 
                 Promise.all(request)
                     .then((jsonData) => {
