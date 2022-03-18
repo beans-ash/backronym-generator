@@ -1,5 +1,5 @@
 import firebase from "./firebase.js";
-import { getDatabase, ref, onValue } from 'firebase/database';
+import { getDatabase, ref, onValue, remove } from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -8,26 +8,39 @@ const SavedBackronym = () => {
 
     useEffect(() => {
         const database = getDatabase(firebase)
-        const dbRef = ref(database)
-        const backronymList = []; 
-
-        onValue(dbRef, (response) => {
+        const dbRef = ref(database) 
+        let abortController = new AbortController();
+        
+        onValue(dbRef, (response) => {  
+            const backronymList = [];
             // console.log(response.val());
             const data = response.val()
             for(let key in data) {
-                backronymList.push(data[key]);
+                backronymList.push({key: key, backronym: data[key]});
                 // console.log(backronymList);
             }
             setSavedBackronym(backronymList);
+            // console.log(backronymList);
         })
+        abortController.abort();
     }, [])
-    console.log(savedBackronym);
+    
+    const handleRemoveBackronym = (backronymId) => {
+        const database = getDatabase(firebase);
+        const dbRef = ref(database, `/${backronymId}`);
+        remove(dbRef);
+        console.log(savedBackronym);
+    }
+
     return (
         <>
-        {savedBackronym.map(backronymArray => {
-            const displayedBackronym = [...backronymArray]
+        {savedBackronym.map(backronymObject => {
+            const displayedBackronym = [...backronymObject.backronym]
             return (
-                <p>{displayedBackronym.join(' ')}</p>
+                <div key={backronymObject.key}>
+                    <p>{displayedBackronym.join(' ')}</p>
+                    <button onClick={() => {handleRemoveBackronym(backronymObject.key)}}>Remove</button>
+                </div>
             )
         })}
         <Link to='/'>Return Home</Link>
