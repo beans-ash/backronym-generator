@@ -1,6 +1,7 @@
 import firebase from "./firebase.js";
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const SavedBackronym = () => {
     const [savedBackronym, setSavedBackronym] = useState([]);
@@ -29,6 +30,7 @@ const SavedBackronym = () => {
                 <p>{displayedBackronym.join(' ')}</p>
             )
         })}
+        <Link to='/'>Return Home</Link>
         </>
     )
 }

@@ -1,14 +1,17 @@
 import './App.css';
 import SavedBackronym from './Components/SavedBackronyms';
 import UserInput from './Components/UserInput';
+import {Routes, Route } from 'react-router-dom';
 
 
 
 function App() {
   return (
-    <div className="App">
-      <UserInput />
-      <SavedBackronym />
+    <div className="App">  
+      <Routes>
+        <Route path='/' element={<UserInput /> } />
+        <Route path='/saved' element={<SavedBackronym /> } />
+      </Routes>
     </div>
   );
 }

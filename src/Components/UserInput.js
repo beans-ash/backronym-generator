@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import DisplayResults from './DisplayResults';
+import { Link } from 'react-router-dom';
 
 const UserInput = ()=> {
 
@@ -71,6 +72,7 @@ const UserInput = ()=> {
         </form>
 
         <DisplayResults returnedBackronym={returnedBackronym} />
+        <Link to='/saved'>View your Saved Results</Link>
         </>
     )
 }
