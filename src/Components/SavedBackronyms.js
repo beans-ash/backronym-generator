@@ -2,6 +2,7 @@ import firebase from "./firebase.js";
 import { getDatabase, ref, onValue, remove } from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import PopUpModal from "./PopUpModal.js";
 
 const SavedBackronym = () => {
     const [savedBackronym, setSavedBackronym] = useState([]);
@@ -30,6 +31,7 @@ const SavedBackronym = () => {
         const dbRef = ref(database, `/${backronymId}`);
         remove(dbRef);
         console.log(savedBackronym);
+        console.log('removed!!!!');
     }
 
     return (
@@ -39,7 +41,8 @@ const SavedBackronym = () => {
             return (
                 <div key={backronymObject.key}>
                     <p>{displayedBackronym.join(' ')}</p>
-                    <button onClick={() => {handleRemoveBackronym(backronymObject.key)}}>Remove</button>
+                    <PopUpModal handleRemoveBackronym={() => {handleRemoveBackronym(backronymObject.key)}}></PopUpModal>
+                    {/* <button onClick={() => {handleRemoveBackronym(backronymObject.key)}}>Remove</button> */}
                 </div>
             )
         })}
