@@ -9,6 +9,7 @@ const UserInput = ()=> {
     const [userInput, setUserInput] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [returnedBackronym, setReturnedBackronym] = useState([]);
+    const [networkError, setNetworkError] = useState(false);
 
     const handleInput = (event) => {
         setUserInput(event.target.value.trim());   
@@ -17,7 +18,6 @@ const UserInput = ()=> {
     const handleSubmit = (event) => {
         event.preventDefault();
         setSearchTerm(userInput);
-        // setUserInput('');
         search(userInput);
     }
 
@@ -37,8 +37,17 @@ const UserInput = ()=> {
                     })
                         .then((res) => {
                             console.log(res)
-                            const returnedFilteredArray = res.data.filter(wordObj => wordObj.word.length > 1 && !wordObj.word.includes(' '))
-                            return returnedFilteredArray;
+                            if(res.statusText === 'OK') {
+                                setNetworkError(false);
+                                const returnedFilteredArray = res.data.filter(wordObj => wordObj.word.length > 1 && !wordObj.word.includes(' '))
+                                return returnedFilteredArray;
+                            } else {
+                                throw new Error();
+                            }
+                        }).catch((err) => {
+                            if (err) {
+                                setNetworkError(true);
+                            }
                         });
                 })
                 const randomizer = (array) => {
@@ -74,6 +83,8 @@ const UserInput = ()=> {
             <input onChange={handleInput} type="text" id="userInput" value={userInput}/>
             <button>Search</button>
         </form>
+
+        {networkError && <p>Sorry, something went wrong please try again.</p>}
 
         <DisplayResults returnedBackronym={returnedBackronym} />
         <Link to='/saved'>View your Saved Results</Link>

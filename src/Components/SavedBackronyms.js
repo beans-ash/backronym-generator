@@ -30,8 +30,6 @@ const SavedBackronym = () => {
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${backronymId}`);
         remove(dbRef);
-        console.log(savedBackronym);
-        console.log('removed!!!!');
     }
 
     return (
@@ -41,7 +39,7 @@ const SavedBackronym = () => {
             return (
                 <div key={backronymObject.key}>
                     <p>{displayedBackronym.join(' ')}</p>
-                    <PopUpModal handleRemoveBackronym={() => {handleRemoveBackronym(backronymObject.key)}}></PopUpModal>
+                    <PopUpModal handleRemoveBackronym={handleRemoveBackronym} id={backronymObject.key}></PopUpModal>
                     {/* <button onClick={() => {handleRemoveBackronym(backronymObject.key)}}>Remove</button> */}
                 </div>
             )
