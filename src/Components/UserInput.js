@@ -4,7 +4,7 @@ import axios from 'axios';
 import DisplayResults from './DisplayResults';
 import { Link } from 'react-router-dom';
 
-const UserInput = ()=> {
+const UserInput = () => {
 
     const [userInput, setUserInput] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
@@ -35,20 +35,20 @@ const UserInput = ()=> {
                             sp: `${letter}*`
                         }
                     })
-                        .then((res) => {
-                            console.log(res)
-                            if(res.statusText === 'OK') {
-                                setNetworkError(false);
-                                const returnedFilteredArray = res.data.filter(wordObj => wordObj.word.length > 1 && !wordObj.word.includes(' '))
-                                return returnedFilteredArray;
-                            } else {
-                                throw new Error();
-                            }
-                        }).catch((err) => {
-                            if (err) {
-                                setNetworkError(true);
-                            }
-                        });
+                    .then((res) => {
+                        console.log(res)
+                        if(res.statusText === 'OK') {
+                            setNetworkError(false);
+                            const returnedFilteredArray = res.data.filter(wordObj => wordObj.word.length > 1 && !wordObj.word.includes(' '))
+                            return returnedFilteredArray;
+                        } else {
+                            throw new Error();
+                        }
+                    }).catch((err) => {
+                        if (err) {
+                            setNetworkError(true);
+                        }
+                    });
                 })
                 const randomizer = (array) => {
                     const index = Math.floor(Math.random() * array.length);
@@ -56,7 +56,6 @@ const UserInput = ()=> {
                     console.log(returnedWord)
                     return (array[index]);
                 }
-
 
                 Promise.all(request)
                     .then((jsonData) => {

@@ -23,7 +23,6 @@ const DisplayResults = (props) => {
             {props.returnedBackronym.length > 0 && <button onClick={handleSave}>Save</button>}
         </div>
     )
-        
 }
 
 export default DisplayResults

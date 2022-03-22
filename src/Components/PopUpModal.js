@@ -20,8 +20,7 @@ const PopUpModal = (props) => {
                     </div>      
                 </div>    
                 )}
-         </Popup>
-  
+        </Popup>
     )
 }
 

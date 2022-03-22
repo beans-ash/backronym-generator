@@ -34,16 +34,20 @@ const SavedBackronym = () => {
 
     return (
         <>
-        {savedBackronym.map(backronymObject => {
-            const displayedBackronym = [...backronymObject.backronym]
-            return (
-                <div key={backronymObject.key}>
-                    <p>{displayedBackronym.join(' ')}</p>
-                    <PopUpModal handleRemoveBackronym={handleRemoveBackronym} id={backronymObject.key}></PopUpModal>
-                    {/* <button onClick={() => {handleRemoveBackronym(backronymObject.key)}}>Remove</button> */}
-                </div>
-            )
-        })}
+            {savedBackronym.length !== 0
+            ?
+            savedBackronym.map(backronymObject => {
+                const displayedBackronym = [...backronymObject.backronym]
+                return (
+                    <div key={backronymObject.key}>
+                        <p>{displayedBackronym.join(' ')}</p>
+                        <PopUpModal handleRemoveBackronym={handleRemoveBackronym} id={backronymObject.key}></PopUpModal>
+                    </div>
+                )
+            })
+            :
+            <p>Please return to home page to save a backronym</p>
+        }
         <Link to='/'>Return Home</Link>
         </>
     )
