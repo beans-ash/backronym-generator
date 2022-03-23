@@ -1,6 +1,4 @@
 import Popup from 'reactjs-popup';
-import firebase from "./firebase.js";
-import { getDatabase, ref, onValue, remove } from 'firebase/database';
 
 const PopUpModal = (props) => {
 

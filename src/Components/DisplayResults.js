@@ -13,13 +13,11 @@ const DisplayResults = (props) => {
         push (dbRef, props.returnedBackronym);
     }
 
+    const returnedBackronymString = [...props.returnedBackronym]
+
     return(
         <div>
-            {props.returnedBackronym.map(word => {
-                return (
-                    <p key={word}>{word}</p>
-                )
-            })}
+            <p>{returnedBackronymString.join(' ')}</p>
             {props.returnedBackronym.length > 0 && <button onClick={handleSave}>Save</button>}
         </div>
     )

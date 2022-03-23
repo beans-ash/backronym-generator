@@ -36,7 +36,6 @@ const UserInput = () => {
                         }
                     })
                     .then((res) => {
-                        console.log(res)
                         if(res.statusText === 'OK') {
                             setNetworkError(false);
                             const returnedFilteredArray = res.data.filter(wordObj => wordObj.word.length > 1 && !wordObj.word.includes(' '))
@@ -53,7 +52,6 @@ const UserInput = () => {
                 const randomizer = (array) => {
                     const index = Math.floor(Math.random() * array.length);
                     returnedWord = array[index].word;
-                    console.log(returnedWord)
                     return (array[index]);
                 }
 
@@ -70,12 +68,11 @@ const UserInput = () => {
             }
         }
     }
-    console.log(returnedBackronym)
 
     return(
         <>
-        <h2></h2>
-        <p></p>
+        <h2>How to Use</h2>
+        <p>Enter your word below and hit search! If you like what you see hit save, and if not, hit the search button again.</p>
         {searchTerm !== '' && searchTerm.length < 3 && <p>Oops - please enter a word with 3 or more letters</p>}
         <form onSubmit={handleSubmit}>
             <label htmlFor="userInput">Enter Backronym</label>

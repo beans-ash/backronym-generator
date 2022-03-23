@@ -1,5 +1,5 @@
 import firebase from "./firebase.js";
-import { getDatabase, ref, onValue, remove } from 'firebase/database';
+import { getDatabase, ref, onValue, remove, onDisconnect } from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PopUpModal from "./PopUpModal.js";
@@ -10,20 +10,16 @@ const SavedBackronym = () => {
     useEffect(() => {
         const database = getDatabase(firebase)
         const dbRef = ref(database) 
-        let abortController = new AbortController();
         
         onValue(dbRef, (response) => {  
             const backronymList = [];
-            // console.log(response.val());
             const data = response.val()
             for(let key in data) {
                 backronymList.push({key: key, backronym: data[key]});
-                // console.log(backronymList);
             }
             setSavedBackronym(backronymList);
-            // console.log(backronymList);
         })
-        abortController.abort();
+        return () => {onDisconnect(dbRef)}
     }, [])
     
     const handleRemoveBackronym = (backronymId) => {
