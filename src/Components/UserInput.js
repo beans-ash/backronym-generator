@@ -70,21 +70,25 @@ const UserInput = () => {
     }
 
     return(
-        <>
-        <h2>How to Use</h2>
-        <p>Enter your word below and hit search! If you like what you see hit save, and if not, hit the search button again.</p>
-        {searchTerm !== '' && searchTerm.length < 3 && <p>Oops - please enter a word with 3 or more letters</p>}
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="userInput">Enter Backronym</label>
-            <input onChange={handleInput} type="text" id="userInput" value={userInput}/>
-            <button>Search</button>
-        </form>
-
-        {networkError && <p>Sorry, something went wrong please try again.</p>}
-
-        <DisplayResults returnedBackronym={returnedBackronym} />
-        <Link to='/saved'>View your Saved Results</Link>
-        </>
+        <main>
+            <section className="userInput">
+                <h2>How to Use</h2>
+                <p>Enter your word below and hit search! If you like what you see hit save, if not search again.</p>
+                {searchTerm !== '' && searchTerm.length < 3 && <p>Oops - please enter a word with 3 or more letters</p>}
+                <form onSubmit={handleSubmit}>
+                    <label htmlFor="userInput">Enter Backronym</label>
+                    <input onChange={handleInput} type="text" id="userInput" value={userInput}/>
+                    <button>Search</button>
+                </form>
+                {networkError && <p>Sorry, something went wrong please try again.</p>}
+            </section>
+            <section className="results">
+            {returnedBackronym.length !== 0 &&
+                <DisplayResults returnedBackronym={returnedBackronym} savedSearchTerm={searchTerm} />
+            }   
+            <Link to='/saved'>View your Saved Results</Link>
+            </section>
+        </main>
     )
 }
 

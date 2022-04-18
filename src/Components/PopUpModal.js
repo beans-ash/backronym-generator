@@ -1,11 +1,13 @@
 import Popup from 'reactjs-popup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 const PopUpModal = (props) => {
 
     return (
       
         <Popup
-            trigger={<button className="button">Remove</button>}    
+            trigger={<button className="button"><FontAwesomeIcon icon={faTrashCan} aria-label='Remove'/></button>}    
             modal    
             nested>
                 {close => (

@@ -1,0 +1,78 @@
+@import "setup";
+
+@import "typography";
+
+@import "header";
+
+.App {
+    height: 100vh;
+}
+
+main {
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.userInput {
+
+    h2 {
+        text-transform: uppercase;
+        text-align: center;
+        margin: 10px 0;
+    }
+
+    p {
+        margin: 10px 0;
+    }
+
+    form {
+        margin: 25px 0;
+        display: flex;
+        flex-wrap: wrap;
+        
+        label {
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        input {
+            width: 30%
+        }
+
+    }
+}
+
+.card {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: black 1px solid;
+    border-radius: 5px;
+    box-shadow: -4px 4px black;
+
+    p {
+        margin-right: 20px;
+    }
+}
+
+.results {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    a {
+        text-align: center;
+    }
+}
+
+footer {
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
