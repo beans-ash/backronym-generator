@@ -3,6 +3,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import DisplayResults from './DisplayResults';
 import { Link } from 'react-router-dom';
+import Card from './UI/Card';
+import Button from './UI/Button';
 
 const UserInput = () => {
 
@@ -73,13 +75,16 @@ const UserInput = () => {
         <main>
             <section className="userInput">
                 <h2>How to Use</h2>
-                <p>Enter your word below and hit search! If you like what you see hit save, if not search again.</p>
+                <p>Enter your word below and hit search! If you like the Backronym hit save, if not search again.</p>
                 {searchTerm !== '' && searchTerm.length < 3 && <p>Oops - please enter a word with 3 or more letters</p>}
-                <form onSubmit={handleSubmit}>
-                    <label htmlFor="userInput">Enter Backronym</label>
-                    <input onChange={handleInput} type="text" id="userInput" value={userInput}/>
-                    <button>Search</button>
-                </form>
+                <Card className='form'>
+                    <form  onSubmit={handleSubmit}>
+                        <label htmlFor="userInput">Enter a Word</label>
+                        <input onChange={handleInput} type="text" id="userInput" value={userInput}/>
+                        <Button className='searchBar' >Search</Button>
+
+                    </form>
+                </Card>
                 {networkError && <p>Sorry, something went wrong please try again.</p>}
             </section>
             <section className="results">

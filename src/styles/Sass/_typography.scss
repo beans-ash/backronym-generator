@@ -1,14 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Maitree&family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 h1,
 h2 {
-    font-family: 'Maitree', serif;
+    font-family: 'VT323',
+    monospace;
 }
 
 p,
 button,
 a,
-label {
+label, 
+input {
     font-family: 'Montserrat', sans-serif;
 }
 

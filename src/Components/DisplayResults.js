@@ -2,9 +2,13 @@
 import firebase from './firebase.js';
 import { getDatabase, ref, push } from 'firebase/database';
 import Card from './UI/Card.js';
+import Button from './UI/Button.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
 const DisplayResults = (props) => {
     
+    const returnedBackronymString = props.returnedBackronym.join(' ');
     const handleSave = (event) => {
         event.preventDefault();
         // created object to store user input and corresponding backronym
@@ -15,15 +19,14 @@ const DisplayResults = (props) => {
         // create reference to database
         const database = getDatabase(firebase);
         const dbRef = ref(database);
-        // push saved backronym to the database
+        // push saved backronym object (includes userInput and returned Backronym) to the database
         push (dbRef, savedBackronym);
     }
-    const returnedBackronymString = props.returnedBackronym.join(' ');
 
     return(
-        <Card className="wrapper">
+        <Card className='showResults' >
             <p>{returnedBackronymString}</p>
-            {props.returnedBackronym.length > 0 && <button onClick={handleSave}>Save</button>}
+            {props.returnedBackronym.length > 0 && <Button className='saveButton' onClick={handleSave}><FontAwesomeIcon icon={faFloppyDisk} aria-label='Save'/></Button>}
         </Card>
     )
 }

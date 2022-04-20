@@ -1,0 +1,9 @@
+.savedBackronym {
+    background-color: rgb(226, 204, 247);
+    text-transform: capitalize;
+        :first-child {
+            text-transform: uppercase;
+        }
+
+}
+

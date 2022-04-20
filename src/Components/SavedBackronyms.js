@@ -16,9 +16,7 @@ const SavedBackronym = (props) => {
             const backronymList = [];
             const data = response.val()
             for(let key in data) {
-                backronymList.push({key: key, backronym: data[key]});
-                console.log(key);
-                console.log(data[key]);
+                backronymList.push({key: key, backronym: data[key].backronym, userInput: data[key].userInput});
             }
             setSavedBackronym(backronymList);
         })
@@ -30,16 +28,18 @@ const SavedBackronym = (props) => {
         remove(dbRef);
     }
 
+    console.log(savedBackronym)
     return (
         <section className="savedBackronyms wrapper">
             {savedBackronym.length !== 0
             ?
-            savedBackronym.map((backronymObject, index) => {
-                // const displayedBackronym = [...backronymObject.backronym]
+            savedBackronym.map((backronymObject) => {
+                console.log(backronymObject)
+
                 return (
-                    <Card key={backronymObject.key}>
-                        {/* <p>{displayedBackronym.join(' ')}</p> */}
-                        <p>{backronymObject.backronym.index}</p>
+                    <Card className='savedBackronym' key={backronymObject.key}>
+                        <p>{backronymObject.userInput}:</p>
+                        <p>{backronymObject.backronym}</p>
                         <PopUpModal handleRemoveBackronym={handleRemoveBackronym} id={backronymObject.key}></PopUpModal>
                     </Card>
                 )

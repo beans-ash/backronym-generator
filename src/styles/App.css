@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Maitree&family=Montserrat&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -234,13 +235,14 @@ p {
 
 h1,
 h2 {
-  font-family: "Maitree", serif;
+  font-family: "VT323", monospace;
 }
 
 p,
 button,
 a,
-label {
+label,
+input {
   font-family: "Montserrat", sans-serif;
 }
 
@@ -254,7 +256,7 @@ header p {
 header h1 {
   text-transform: uppercase;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
 }
 header p:nth-child(2) {
   text-align: center;
@@ -264,8 +266,104 @@ header p:nth-child(3) {
   font-size: 1.1rem;
 }
 
+.form {
+  background-color: rgb(112, 223, 191);
+}
+
+form {
+  width: 100%;
+  height: 105px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+  text-align: center;
+}
+form label {
+  width: 100%;
+  margin: 10px 0;
+  font-size: 1.5rem;
+}
+form input {
+  width: 70%;
+  font-size: 1rem;
+  border: black 1px solid;
+  border-radius: 3px;
+  -webkit-box-shadow: -1.5px 1.5px black;
+          box-shadow: -1.5px 1.5px black;
+  margin-right: 10px;
+  padding: 5px;
+}
+form .searchBar {
+  background-color: rgb(205, 244, 233);
+}
+
+.results {
+  width: 100%;
+  height: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.results a {
+  text-align: center;
+}
+.results .showResults {
+  background-color: rgb(245, 161, 146);
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  word-spacing: 3px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.button {
+  border: 1px solid black;
+  border-radius: 3px;
+  padding: 6px;
+}
+
+.saveButton {
+  background-color: rgb(244, 193, 184);
+  font-size: 1.5rem;
+  height: 50px;
+  width: 50px;
+}
+
+.removeButton {
+  height: 35px;
+  width: 35px;
+  font-size: 1rem;
+}
+
+.savedBackronym {
+  background-color: rgb(226, 204, 247);
+  text-transform: capitalize;
+}
+.savedBackronym :first-child {
+  text-transform: uppercase;
+}
+
 .App {
   height: 100vh;
+}
+
+body {
+  background-color: rgb(246, 233, 199);
 }
 
 main {
@@ -286,24 +384,10 @@ main {
   text-transform: uppercase;
   text-align: center;
   margin: 10px 0;
+  font-size: 2.75rem;
 }
 .userInput p {
   margin: 10px 0;
-}
-.userInput form {
-  margin: 25px 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-.userInput form label {
-  width: 100%;
-  margin: 10px 0;
-}
-.userInput form input {
-  width: 30%;
 }
 
 .card {
@@ -324,22 +408,8 @@ main {
   margin-right: 20px;
 }
 
-.results {
-  width: 100%;
-  height: 30%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-.results a {
-  text-align: center;
+.form {
+  background-color: rgb(112, 223, 191);
 }
 
 footer {
