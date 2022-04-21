@@ -8,7 +8,7 @@ import Header from './Components/Header';
 
 const App = () => {
   return (
-    <div className="App wrapper"> 
+    <div className="App"> 
       <Header /> 
       <Routes>
         <Route path='/' element={<UserInput /> } />

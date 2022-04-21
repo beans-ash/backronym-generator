@@ -5,6 +5,8 @@ import DisplayResults from './DisplayResults';
 import { Link } from 'react-router-dom';
 import Card from './UI/Card';
 import Button from './UI/Button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const UserInput = () => {
 
@@ -72,7 +74,7 @@ const UserInput = () => {
     }
 
     return(
-        <main>
+        <main className="wrapper">
             <section className="userInput">
                 <h2>How to Use</h2>
                 <p>Enter your word below and hit search! If you like the Backronym hit save, if not search again.</p>
@@ -81,7 +83,7 @@ const UserInput = () => {
                     <form  onSubmit={handleSubmit}>
                         <label htmlFor="userInput">Enter a Word</label>
                         <input onChange={handleInput} type="text" id="userInput" value={userInput}/>
-                        <Button className='searchBar' >Search</Button>
+                        <Button className='searchButton' >Search</Button>
 
                     </form>
                 </Card>
@@ -91,7 +93,14 @@ const UserInput = () => {
             {returnedBackronym.length !== 0 &&
                 <DisplayResults returnedBackronym={returnedBackronym} savedSearchTerm={searchTerm} />
             }   
-            <Link to='/saved'>View your Saved Results</Link>
+            <Link to='/saved'>View your Saved Results
+            <div>
+                <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="first"/>
+                <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="second"/>
+                <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="third"/>
+            </div>
+            </Link>
+            
             </section>
         </main>
     )

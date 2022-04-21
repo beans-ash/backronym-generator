@@ -218,6 +218,7 @@ html {
   padding: 0;
   margin: 0;
   font-size: 125%;
+  height: 100%;
 }
 
 h1,
@@ -247,7 +248,7 @@ input {
 }
 
 header {
-  height: 30%;
+  height: 30vh;
 }
 header h1,
 header p {
@@ -264,6 +265,30 @@ header p:nth-child(2) {
 }
 header p:nth-child(3) {
   font-size: 1.1rem;
+}
+
+main {
+  min-height: 65vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.userInput h2 {
+  text-transform: uppercase;
+  text-align: center;
+  margin: 10px 0;
+  font-size: 2.75rem;
+}
+.userInput p {
+  margin: 10px 0;
 }
 
 .form {
@@ -300,9 +325,6 @@ form input {
   margin-right: 10px;
   padding: 5px;
 }
-form .searchBar {
-  background-color: rgb(205, 244, 233);
-}
 
 .results {
   width: 100%;
@@ -319,7 +341,46 @@ form .searchBar {
           justify-content: space-between;
 }
 .results a {
-  text-align: center;
+  text-decoration: none;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.3rem;
+  margin: 35px 0;
+}
+.results a div {
+  margin-left: 15px;
+}
+.results a div .first,
+.results a div .second,
+.results a div .third {
+  visibility: hidden;
+  -webkit-transition-property: visibility;
+  transition-property: visibility;
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+.results a div .second {
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
+}
+.results a div .third {
+  -webkit-transition-delay: 0.9s;
+          transition-delay: 0.9s;
+}
+.results a:hover div .first,
+.results a:hover div .second,
+.results a:hover div .third,
+.results a:focus div .first,
+.results a:focus div .second,
+.results a:focus div .third {
+  visibility: visible;
 }
 .results .showResults {
   background-color: rgb(245, 161, 146);
@@ -335,6 +396,13 @@ form .searchBar {
   border: 1px solid black;
   border-radius: 3px;
   padding: 6px;
+  -webkit-transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover,
+.button:focus {
+  background-color: white;
 }
 
 .saveButton {
@@ -345,49 +413,14 @@ form .searchBar {
 }
 
 .removeButton {
+  background-color: rgb(243, 235, 250);
   height: 35px;
   width: 35px;
   font-size: 1rem;
 }
 
-.savedBackronym {
-  background-color: rgb(226, 204, 247);
-  text-transform: capitalize;
-}
-.savedBackronym :first-child {
-  text-transform: uppercase;
-}
-
-.App {
-  height: 100vh;
-}
-
-body {
-  background-color: rgb(246, 233, 199);
-}
-
-main {
-  height: 55%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.userInput h2 {
-  text-transform: uppercase;
-  text-align: center;
-  margin: 10px 0;
-  font-size: 2.75rem;
-}
-.userInput p {
-  margin: 10px 0;
+.searchButton {
+  background-color: rgb(205, 244, 233);
 }
 
 .card {
@@ -408,12 +441,76 @@ main {
   margin-right: 20px;
 }
 
-.form {
-  background-color: rgb(112, 223, 191);
+.savedBackronym {
+  background-color: rgb(226, 204, 247);
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.savedBackronym p {
+  text-transform: uppercase;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.savedBackronym div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.savedBackronym div p {
+  text-transform: capitalize;
+  font-weight: normal;
+}
+
+.savedBackronyms a {
+  text-decoration: none;
+  color: black;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.3rem;
+  margin: 35px 0;
+}
+.savedBackronyms a div {
+  margin-right: 15px;
+}
+.savedBackronyms a div .first,
+.savedBackronyms a div .second,
+.savedBackronyms a div .third {
+  visibility: hidden;
+  -webkit-transition-property: visibility;
+  transition-property: visibility;
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+.savedBackronyms a div .second {
+  -webkit-transition-delay: 0.6s;
+          transition-delay: 0.6s;
+}
+.savedBackronyms a div .third {
+  -webkit-transition-delay: 0.9s;
+          transition-delay: 0.9s;
+}
+.savedBackronyms a:hover div .first,
+.savedBackronyms a:hover div .second,
+.savedBackronyms a:hover div .third,
+.savedBackronyms a:focus div .first,
+.savedBackronyms a:focus div .second,
+.savedBackronyms a:focus div .third {
+  visibility: visible;
 }
 
 footer {
-  height: 10%;
+  height: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -423,4 +520,41 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: #FF82B0;
+}
+footer p {
+  font-size: 0.8rem;
+}
+footer p a {
+  text-decoration: none;
+  color: black;
+  position: relative;
+}
+footer p a::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: black;
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  -webkit-transition: -webkit-transform 0.25s ease-out;
+  transition: -webkit-transform 0.25s ease-out;
+  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-out, -webkit-transform 0.25s ease-out;
+}
+footer p a:hover::after, footer p a:focus::after {
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+}
+
+body {
+  background-color: rgb(246, 233, 199);
+  height: 100%;
 }

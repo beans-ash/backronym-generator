@@ -2,17 +2,28 @@
     border: 1px solid black;
     border-radius: 3px;
     padding: 6px;
+    transition: background-color 0.3s ease;
 }
 
-    .saveButton {
-        background-color: rgb(244, 193, 184);
-        font-size: 1.5rem;
-        height: 50px;
-        width: 50px;
-    }
+.button:hover,
+.button:focus {
+    background-color: white;
+}
 
-    .removeButton {
-        height: 35px;
-        width: 35px;
-        font-size: 1rem;
-    }
+.saveButton {
+    background-color: rgb(244, 193, 184);
+    font-size: 1.5rem;
+    height: 50px;
+    width: 50px;
+}
+
+.removeButton {
+    background-color: rgb(243, 235, 250);
+    height: 35px;
+    width: 35px;
+    font-size: 1rem;
+}
+
+.searchButton {
+    background-color: rgb(205, 244, 233);
+}

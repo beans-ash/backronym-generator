@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PopUpModal from "./PopUpModal.js";
 import Card from './UI/Card.js';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const SavedBackronym = (props) => {
     const [savedBackronym, setSavedBackronym] = useState([]);
@@ -39,15 +41,24 @@ const SavedBackronym = (props) => {
                 return (
                     <Card className='savedBackronym' key={backronymObject.key}>
                         <p>{backronymObject.userInput}:</p>
-                        <p>{backronymObject.backronym}</p>
-                        <PopUpModal handleRemoveBackronym={handleRemoveBackronym} id={backronymObject.key}></PopUpModal>
+                        <div>
+                            <p>{backronymObject.backronym}</p>
+                            <PopUpModal handleRemoveBackronym={handleRemoveBackronym} id={backronymObject.key}></PopUpModal>
+                        </div>
                     </Card>
                 )
             })
             :
             <p>Please return to home page to save a backronym</p>
             }
-        <Link to='/'>Return Home</Link>
+        <Link to='/'>
+        <div>
+            <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="third"/>
+            <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="second"/>
+            <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="first"/>
+        </div>
+        Return Home
+        </Link>
         </section>
     )
 }
