@@ -5,6 +5,7 @@ import DisplayResults from './DisplayResults';
 import { Link } from 'react-router-dom';
 import Card from './UI/Card';
 import Button from './UI/Button';
+import ErrorModal from './ErrorModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,16 +15,31 @@ const UserInput = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [returnedBackronym, setReturnedBackronym] = useState([]);
     const [networkError, setNetworkError] = useState(false);
+    const [errorPopup, setErrorPopup] = useState(false)
 
     const handleInput = (event) => {
+        console.log(event.target.value)
         setUserInput(event.target.value.trim());   
     };
 
+    const inputCheck = (input) => {
+        const regex = new RegExp(/^[A-Za-z]+$/)
+        const check = regex.test(input)
+        if(check) {
+            setSearchTerm(input)
+            search(input)
+        } else {
+            setErrorPopup(true)
+            setUserInput('')
+            setReturnedBackronym([])
+        }
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
-        setSearchTerm(userInput);
-        search(userInput);
+        inputCheck(userInput)
     }
+
 
     const search = (enteredSearchTerm, returnedWord = searchTerm) => {
         if(enteredSearchTerm !== '') {
@@ -90,9 +106,10 @@ const UserInput = () => {
                 {networkError && <p>Sorry, something went wrong please try again.</p>}
             </section>
             <section className="results">
-            {returnedBackronym.length !== 0 &&
+                        
+            {returnedBackronym.length !== 0  &&
                 <DisplayResults returnedBackronym={returnedBackronym} savedSearchTerm={searchTerm} />
-            }   
+            }    
             <Link to='/saved'>View your Saved Results
             <div>
                 <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="first"/>
@@ -102,6 +119,11 @@ const UserInput = () => {
             </Link>
             
             </section>
+            <section>
+
+            {errorPopup === true ? <ErrorModal errorPopup={errorPopup} setErrorPopup={setErrorPopup} setUserInput={setUserInput} /> : null}
+            </section>
+
         </main>
     )
 }
