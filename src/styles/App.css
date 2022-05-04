@@ -613,6 +613,74 @@ footer p a:hover::after, footer p a:focus::after {
           justify-content: space-evenly;
 }
 
+.loadingAnimation {
+  position: fixed;
+  top: 30%;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(246, 233, 199);
+  z-index: 20;
+}
+.loadingAnimation .loadingBar {
+  position: relative;
+  height: 10px;
+  width: 40%;
+  border: 10px solid #f4a261;
+  border-radius: 15px;
+  margin: 100px auto;
+}
+.loadingAnimation .loadingBar .loadingProgress {
+  position: absolute;
+  top: -4.5px;
+  left: 1px;
+  background-color: #ffffff;
+  width: 0px;
+  height: 10px;
+  border-radius: 15px;
+  -webkit-animation: progress 2000ms infinite linear;
+          animation: progress 2000ms infinite linear;
+}
+.loadingAnimation .loadingBar .loadingText {
+  text-align: center;
+  margin-top: 20px;
+}
+
+@-webkit-keyframes progress {
+  0% {
+    width: 0%;
+  }
+  25% {
+    width: 50%;
+  }
+  50% {
+    width: 75%;
+  }
+  75% {
+    width: 85%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes progress {
+  0% {
+    width: 0%;
+  }
+  25% {
+    width: 50%;
+  }
+  50% {
+    width: 75%;
+  }
+  75% {
+    width: 85%;
+  }
+  100% {
+    width: 100%;
+  }
+}
 body {
   background-color: rgb(246, 233, 199);
   height: 100%;

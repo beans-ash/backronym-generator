@@ -6,8 +6,7 @@ import Button from './UI/Button.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
-const DisplayResults = (props) => {
-    
+const DisplayResults = (props) => { 
     const returnedBackronymString = props.returnedBackronym.join(' ');
     const handleSave = (event) => {
         event.preventDefault();

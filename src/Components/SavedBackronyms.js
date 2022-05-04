@@ -4,16 +4,18 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import PopUpModal from "./PopUpModal.js";
 import Card from './UI/Card.js';
+import LoadingAnimation from "./UI/LoadingAnimation.js";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const SavedBackronym = (props) => {
     const [savedBackronym, setSavedBackronym] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const database = getDatabase(firebase)
         const dbRef = ref(database) 
-        
+        setTimeout(() => {setIsLoading(false);}, 2000);
         onValue(dbRef, (response) => {  
             const backronymList = [];
             const data = response.val()
@@ -24,6 +26,7 @@ const SavedBackronym = (props) => {
         })
         return () => {onDisconnect(dbRef)}
     }, [])
+
     const handleRemoveBackronym = (backronymId) => {
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${backronymId}`);
@@ -33,11 +36,12 @@ const SavedBackronym = (props) => {
     console.log(savedBackronym)
     return (
         <section className="savedBackronyms wrapper">
+            {isLoading 
+            ? <LoadingAnimation /> 
+            : null
+            }
             {savedBackronym.length !== 0
-            ?
-            savedBackronym.map((backronymObject) => {
-                console.log(backronymObject)
-
+            ? savedBackronym.map((backronymObject) => {
                 return (
                     <Card className='savedBackronym' key={backronymObject.key}>
                         <p>{backronymObject.userInput}:</p>
@@ -48,17 +52,16 @@ const SavedBackronym = (props) => {
                     </Card>
                 )
             })
-            :
-            <p>Please return to home page to save a backronym</p>
+            : <p>Please return to home page to save a backronym</p>
             }
-        <Link to='/'>
-        <div>
-            <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="third"/>
-            <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="second"/>
-            <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="first"/>
-        </div>
-        Return Home
-        </Link>
+            <Link to='/'>
+                <div>
+                    <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="third"/>
+                    <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="second"/>
+                    <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="first"/>
+                </div>
+            Return Home
+            </Link>
         </section>
     )
 }

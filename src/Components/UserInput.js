@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const UserInput = () => {
-
     const [userInput, setUserInput] = useState('');
     const [searchTerm, setSearchTerm] = useState('');
     const [returnedBackronym, setReturnedBackronym] = useState([]);
@@ -39,7 +38,6 @@ const UserInput = () => {
         event.preventDefault();
         inputCheck(userInput)
     }
-
 
     const search = (enteredSearchTerm, returnedWord = searchTerm) => {
         if(enteredSearchTerm !== '') {

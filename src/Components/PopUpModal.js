@@ -5,7 +5,6 @@ import Button from './UI/Button';
 import Card from './UI/Card';
 
 const PopUpModal = (props) => {
-
     return (
       
         <Popup
