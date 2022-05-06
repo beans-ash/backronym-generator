@@ -32,4 +32,24 @@
             margin: 10px 0;
         }
     }
+
+    .errorPopup {
+        .modal {
+            height: 200px
+        }
+    }
+
+    #popup-2 {
+
+        .modal {
+            height: 300px;
+            .actions {
+                flex-direction: column;
+                
+                button {
+                    margin: 10px 0;
+                }
+            }
+        }
+    }
 }

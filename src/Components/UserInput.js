@@ -91,10 +91,10 @@ const UserInput = () => {
             <section className="userInput">
                 <h2>How to Use</h2>
                 <p>Enter your word below and hit search! If you like the Backronym hit save, if not search again.</p>
-                {searchTerm !== '' && searchTerm.length < 3 && <p>Oops - please enter a word with 3 or more letters</p>}
                 <Card className='form'>
                     <form  onSubmit={handleSubmit}>
                         <label htmlFor="userInput">Enter a Word</label>
+                {searchTerm !== '' && searchTerm.length < 3 && <p className='lengthError'>Oops - please enter a word with 3 or more letters</p>}
                         <input onChange={handleInput} type="text" id="userInput" value={userInput}/>
                         <Button className='searchButton' >Search</Button>
 
