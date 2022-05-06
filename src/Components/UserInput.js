@@ -1,13 +1,12 @@
-// UserInput.js
 import { useState } from 'react';
 import axios from 'axios';
-import DisplayResults from './DisplayResults';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import DisplayResults from './DisplayResults';
 import Card from './UI/Card';
 import Button from './UI/Button';
 import ErrorModal from './ErrorModal';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const UserInput = () => {
     const [userInput, setUserInput] = useState('');
@@ -103,23 +102,23 @@ const UserInput = () => {
                 </Card>
                 {networkError && <p>Sorry, something went wrong please try again.</p>}
             </section>
+
             <section className="results">
                         
             {returnedBackronym.length !== 0  &&
                 <DisplayResults returnedBackronym={returnedBackronym} savedSearchTerm={searchTerm} />
             }    
             <Link to='/saved'>View your Saved Results
-            <div>
-                <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="first"/>
-                <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="second"/>
-                <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="third"/>
-            </div>
+                <div>
+                    <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="first"/>
+                    <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="second"/>
+                    <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="third"/>
+                </div>
             </Link>
-            
             </section>
-            <section>
 
-            {errorPopup === true ? <ErrorModal errorPopup={errorPopup} setErrorPopup={setErrorPopup} setUserInput={setUserInput} /> : null}
+            <section>
+              {errorPopup === true ? <ErrorModal errorPopup={errorPopup} setErrorPopup={setErrorPopup} setUserInput={setUserInput} /> : null}
             </section>
 
         </main>

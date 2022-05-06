@@ -1,10 +1,9 @@
-// DisplayResults
 import firebase from './firebase.js';
 import { getDatabase, ref, push } from 'firebase/database';
-import Card from './UI/Card.js';
-import Button from './UI/Button.js';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import Card from './UI/Card.js';
+import Button from './UI/Button.js';
 
 const DisplayResults = (props) => { 
     const returnedBackronymString = props.returnedBackronym.join(' ');

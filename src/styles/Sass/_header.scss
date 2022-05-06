@@ -1,19 +1,19 @@
 header {
-    height: 30vh;
+    min-height: 20%;
+    margin-top: 50px;
 
     h1,
     p {
         margin: 10px 0;
+        text-align: center;
     }
 
     h1 {
         text-transform: uppercase;
-        text-align: center;
         font-size: 3.5rem;
     }
 
     p:nth-child(2) {
-        text-align: center;
         font-size: 0.9rem;
     }
 

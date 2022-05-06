@@ -2,11 +2,11 @@ import firebase from "./firebase.js";
 import { getDatabase, ref, onValue, remove, onDisconnect } from 'firebase/database';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import PopUpModal from "./PopUpModal.js";
 import Card from './UI/Card.js';
 import LoadingAnimation from "./UI/LoadingAnimation.js";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
 const SavedBackronym = (props) => {
     const [savedBackronym, setSavedBackronym] = useState([]);
@@ -33,7 +33,6 @@ const SavedBackronym = (props) => {
         remove(dbRef);
     }
 
-    console.log(savedBackronym)
     return (
         <section className="savedBackronyms wrapper">
             {isLoading 

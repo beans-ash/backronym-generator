@@ -248,19 +248,19 @@ input {
 }
 
 header {
-  height: 30vh;
+  min-height: 20%;
+  margin-top: 50px;
 }
 header h1,
 header p {
   margin: 10px 0;
+  text-align: center;
 }
 header h1 {
   text-transform: uppercase;
-  text-align: center;
   font-size: 3.5rem;
 }
 header p:nth-child(2) {
-  text-align: center;
   font-size: 0.9rem;
 }
 header p:nth-child(3) {
@@ -289,6 +289,7 @@ main {
 }
 .userInput p {
   margin: 10px 0;
+  text-align: center;
 }
 
 .form {
@@ -353,6 +354,7 @@ form input {
           justify-content: center;
   font-size: 1.3rem;
   margin: 35px 0;
+  text-align: center;
 }
 .results a div {
   margin-left: 15px;
@@ -515,7 +517,7 @@ form input {
 }
 
 footer {
-  height: 60px;
+  height: 10%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -615,7 +617,7 @@ footer p a:hover::after, footer p a:focus::after {
 
 .loadingAnimation {
   position: fixed;
-  top: 30%;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
@@ -681,7 +683,38 @@ footer p a:hover::after, footer p a:focus::after {
     width: 100%;
   }
 }
+@media (max-width: 900px) {
+  header p:nth-child(3) {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 700px) {
+  header h1 {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 500px) {
+  .userInput h2 {
+    font-size: 2.5rem;
+  }
+
+  form input {
+    width: 100%;
+    margin-right: 0;
+  }
+  form button {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
 body {
   background-color: rgb(246, 233, 199);
-  height: 100%;
+}
+
+.App {
+  height: 100vh;
+}
+
+main {
+  min-height: 70%;
 }
