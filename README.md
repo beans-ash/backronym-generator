@@ -1,4 +1,7 @@
-# Getting Started with Create React App
+# Flip It and Reverse It
+Create your own backronym with our generator, and save the ones you like! Created with React, data from the [DataMuse API](https://www.datamuse.com/api/) and Firebase.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

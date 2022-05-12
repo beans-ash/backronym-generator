@@ -18,25 +18,24 @@ const SavedBackronym = (props) => {
         setTimeout(() => {setIsLoading(false);}, 2000);
         onValue(dbRef, (response) => {  
             const backronymList = [];
-            const data = response.val()
+            const data = response.val();
             for(let key in data) {
                 backronymList.push({key: key, backronym: data[key].backronym, userInput: data[key].userInput});
             }
             setSavedBackronym(backronymList);
         })
         return () => {onDisconnect(dbRef)}
-    }, [])
+    }, []);
 
     const handleRemoveBackronym = (backronymId) => {
         const database = getDatabase(firebase);
         const dbRef = ref(database, `/${backronymId}`);
         remove(dbRef);
-    }
+    };
 
     return (
         <section className="savedBackronyms wrapper">
-            {isLoading 
-            ? <LoadingAnimation /> 
+            {isLoading ? <LoadingAnimation /> 
             : null
             }
             {savedBackronym.length !== 0
@@ -59,7 +58,7 @@ const SavedBackronym = (props) => {
                     <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="second"/>
                     <FontAwesomeIcon icon={faChevronLeft} aria-label="hidden" className="first"/>
                 </div>
-            Return Home
+                Return Home
             </Link>
         </section>
     )

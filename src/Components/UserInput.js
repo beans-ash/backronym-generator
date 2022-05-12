@@ -13,29 +13,28 @@ const UserInput = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [returnedBackronym, setReturnedBackronym] = useState([]);
     const [networkError, setNetworkError] = useState(false);
-    const [errorPopup, setErrorPopup] = useState(false)
+    const [errorPopup, setErrorPopup] = useState(false);
 
     const handleInput = (event) => {
-        console.log(event.target.value)
         setUserInput(event.target.value.trim());   
     };
 
     const inputCheck = (input) => {
-        const regex = new RegExp(/^[A-Za-z]+$/)
-        const check = regex.test(input)
+        const regex = new RegExp(/^[A-Za-z]+$/);
+        const check = regex.test(input);
         if(check) {
-            setSearchTerm(input)
-            search(input)
+            setSearchTerm(input);
+            search(input);
         } else {
-            setErrorPopup(true)
-            setUserInput('')
-            setReturnedBackronym([])
+            setErrorPopup(true);
+            setUserInput('');
+            setReturnedBackronym([]);
         }
-    }
+    };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        inputCheck(userInput)
+        inputCheck(userInput);
     }
 
     const search = (enteredSearchTerm, returnedWord = searchTerm) => {
@@ -94,33 +93,36 @@ const UserInput = () => {
                 <Card className='form'>
                     <form  onSubmit={handleSubmit}>
                         <label htmlFor="userInput">Enter a Word</label>
-                {searchTerm !== '' && searchTerm.length < 3 && <p className='lengthError'>Oops - please enter a word with 3 or more letters</p>}
+                        {searchTerm !== '' && searchTerm.length < 3 && 
+                        <p className='lengthError'>Oops - please enter a word with 3 or more letters</p>
+                        }
                         <input onChange={handleInput} type="text" id="userInput" value={userInput}/>
                         <Button className='searchButton' >Search</Button>
-
                     </form>
                 </Card>
-                {networkError && <p>Sorry, something went wrong please try again.</p>}
+                {networkError && 
+                <p>Sorry, something went wrong please try again.</p>
+                }
             </section>
 
-            <section className="results">
-                        
-            {returnedBackronym.length !== 0  &&
+            <section className="results">    
+                {returnedBackronym.length !== 0  &&
                 <DisplayResults returnedBackronym={returnedBackronym} savedSearchTerm={searchTerm} />
-            }    
-            <Link to='/saved'>View your Saved Results
-                <div>
-                    <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="first"/>
-                    <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="second"/>
-                    <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="third"/>
-                </div>
-            </Link>
+                }    
+                <Link to='/saved'>View your Saved Results
+                    <div>
+                        <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="first"/>
+                        <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="second"/>
+                        <FontAwesomeIcon icon={faChevronRight} aria-label="hidden" className="third"/>
+                    </div>
+                </Link>
             </section>
 
             <section>
-              {errorPopup === true ? <ErrorModal errorPopup={errorPopup} setErrorPopup={setErrorPopup} setUserInput={setUserInput} /> : null}
+              {errorPopup === true ? <ErrorModal errorPopup={errorPopup} setErrorPopup={setErrorPopup} setUserInput={setUserInput} /> 
+              : null
+              }
             </section>
-
         </main>
     )
 }
